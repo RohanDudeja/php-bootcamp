@@ -8,7 +8,7 @@
 <body>
 <div class="flex-center position-ref full-height">
     <div class="content">
-        <h1>Here's a list of available products</h1>
+        <h1>Here's a list of available customers</h1>
         <table>
             <thead>
             <td>FirstName</td>
