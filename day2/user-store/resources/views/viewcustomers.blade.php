@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="{{ app()->getLocale() }}">
 <head>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>View Products | Product Store</title>
     <!-- Styles etc. -->
 </head>

@@ -18,7 +18,7 @@ class CreateCustomersTable extends Migration
             $table->timestamps();
             $table->string('first_name');
             $table->string('last_name');
-            $table->string('id_number');
+            $table->string('id_number')->unique();
         });
     }
 

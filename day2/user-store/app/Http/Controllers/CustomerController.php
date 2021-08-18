@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Customer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CustomerController extends Controller
 {
@@ -16,7 +17,7 @@ class CustomerController extends Controller
     {
         $customers = Customer::all();
 
-        return view('viewcutomers', ['allCustomers' => $customers]);
+        return view('viewcustomers', ['allCustomers' => $customers]);
     }
 
     /**
@@ -48,12 +49,17 @@ class CustomerController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request)
     {
-        //
+        //$customers = DB::table('customers')->where('id',$request->get('id_number'));
+        $customer=[];
+        if (Customer::where('id_number', $request->get('id_number'))->exists()) {
+            $customer = Customer::where('id_number', $request->get('id_number'))->get();
+        }
+        return view('viewcustomers', ['allCustomers' => $customer]);
     }
 
     /**
@@ -82,11 +88,16 @@ class CustomerController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param Request $request
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        if (Customer::where('id_number', $request->get('id_number'))->exists()) {
+            Customer::where('id_number', $request->get('id_number'))->delete();
+        }
+        $customers = Customer::all();
+        return view('viewcustomers', ['allCustomers' => $customers]);
+
     }
 }

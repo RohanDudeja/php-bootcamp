@@ -18,3 +18,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::resource('/customers', CustomerController::class);
+Route::get('/customers_actions', function () {
+    return view('actioncustomer');
+});
