@@ -12,7 +12,7 @@
         <table>
             <thead>
             <td>#</td>
-            <td>UserID</td>
+            <td>UserName</td>
             <td>PostID</td>
             <td>Content</td>
             </thead>

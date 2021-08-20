@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class UserController extends Controller
 {
@@ -15,6 +16,7 @@ class UserController extends Controller
     public function index()
     {
         $allUsers = User::all();
+        Log::info('Showing all users');
         return view('viewusers',['allUsers'=>$allUsers]);
     }
 
@@ -46,7 +48,8 @@ class UserController extends Controller
             'user_id' => $request->get('user_id'),
             'password'=> $request->get('password'),
         ]);
-
+        Log::info('Creating the user '.
+            $request->get('user_id'));
         return redirect('/users');
     }
 

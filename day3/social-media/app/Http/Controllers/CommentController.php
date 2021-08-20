@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Comment;
+use Illuminate\Support\Facades\Log;
 
 class CommentController extends Controller
 {
@@ -52,6 +53,11 @@ class CommentController extends Controller
             'content' => $request->get('content'),
             'comment_id'=>$request->get('comment_id'),
         ]);
+        Log::info('Placing the comment for post '.
+            $request->get('post_id').
+            ' by user: '.
+            $request->get('user_id').
+            ' with comment id '.$request->get('comment_id'));
         return response()->json([
             'message'=>'Comment placed',
             'user_id'=>$request->get('user_id'),
