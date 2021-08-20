@@ -2,7 +2,7 @@
 <html lang="{{ app()->getLocale() }}">
 <head>
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Delete Customer | Customer Store</title>
+    <title>Login | Social Media</title>
     <!-- styling etc. -->
 </head>
 <body>
