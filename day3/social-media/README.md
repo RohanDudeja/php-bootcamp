@@ -9,7 +9,7 @@
 - Can comment on a post
 - Can view all comments on a post
 
-### Schemes:
+### Schemes
 |Table Name | Description |
 | ------------- | ------------- |
 |users| Store all user data|
@@ -17,10 +17,11 @@
 |comments| Store all Comments on Posts|
 
 ### How to start the server
- - Clone the repo
+
  - Install php, apache.
- - update composer
+ - Clone the repo
  - redirect to repo head ```cd day3/user-store```
+ - update composer
  - make changes in ```.env``` file
  - run the migrations ```php artisan migrate```
  - run following commands to start the server ```php artisan serve```
