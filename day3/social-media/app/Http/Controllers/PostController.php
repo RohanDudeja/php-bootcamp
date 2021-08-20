@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use GrahamCampbell\ResultType\Result;
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\User;
 
 class PostController extends Controller
 {
@@ -16,6 +17,20 @@ class PostController extends Controller
     public function index()
     {
         $user_id=\request()->get('user_id');
+        $password=\request()->get('password');
+        if (User::where('user_id', $user_id)->exists()) {
+            if (User::where('user_id', $user_id)->where('password',$password)->exists()){
+
+            }else {
+                return response()->json([
+                    'message'=>'invalid password',
+                ]);
+            }
+        }else {
+            return response()->json([
+                'message'=>'no such user exists',
+            ]);
+        }
         $posts = Post::all();
         return view('viewposts',['allPosts'=>$posts,'user_id'=>$user_id]);
     }
@@ -38,6 +53,10 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'post_id' => 'required',
+            'post_content' => 'required|max:255',
+        ]);
         Post::create([
             'user_id' => $request->get('user_id'),
             'post_id' => $request->get('post_id'),
@@ -97,6 +116,9 @@ class PostController extends Controller
         //
     }
     public function getPostsByID(Request $request) {
+        $request->validate([
+            'user_id_get' => 'required',
+        ]);
         $posts=[];
         //echo $request->get('user_id_get');
         if (Post::where('user_id', $request->get('user_id_get'))->exists()) {
