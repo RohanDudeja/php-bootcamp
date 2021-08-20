@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use GrahamCampbell\ResultType\Result;
 use Illuminate\Http\Request;
 use App\Models\Post;
 
@@ -15,7 +16,7 @@ class PostController extends Controller
     public function index()
     {
         $user_id=\request()->get('user_id');
-        $posts = Post::where('user_id',$user_id)->get();
+        $posts = Post::all();
         return view('viewposts',['allPosts'=>$posts,'user_id'=>$user_id]);
     }
 
@@ -26,7 +27,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('createpost',['user_id'=>\request()->get('user_id')]);
     }
 
     /**
@@ -40,9 +41,15 @@ class PostController extends Controller
         Post::create([
             'user_id' => $request->get('user_id'),
             'post_id' => $request->get('post_id'),
+            'content' => $request->get('post_content'),
         ]);
-
-        return redirect('/user/'.$request->get('user_id').'/posts');
+        return response()->json([
+            'message'=>'Post created',
+            'user_id'=>$request->get('user_id'),
+            'post_id'=>$request->get('post_id'),
+            'content'=>$request->get('post_content'),
+        ]);
+        //return redirect('/',);
     }
 
     /**
@@ -88,5 +95,13 @@ class PostController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function getPostsByID(Request $request) {
+        $posts=[];
+        //echo $request->get('user_id_get');
+        if (Post::where('user_id', $request->get('user_id_get'))->exists()) {
+            $posts = Post::where('user_id', $request->get('user_id_get'))->get();
+        }
+        return view('viewpostby',['allPosts'=>$posts]);
     }
 }

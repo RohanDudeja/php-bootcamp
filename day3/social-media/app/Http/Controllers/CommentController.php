@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Comment;
 
 class CommentController extends Controller
 {
@@ -13,7 +14,12 @@ class CommentController extends Controller
      */
     public function index()
     {
-        //
+        $post_id=\request()->get('post_id');
+        $comment=[];
+        if (Comment::where('post_id', $post_id)->exists()) {
+            $comment = Comment::where('post_id', $post_id)->get();
+        }
+        return view('viewcomments',['allComments'=>$comment]);
     }
 
     /**
@@ -23,7 +29,7 @@ class CommentController extends Controller
      */
     public function create()
     {
-        //
+        //return view('createcomment',['user_id'=>\request()->get('user_id'),'post_id'=>\request()->get('post_id')]);
     }
 
     /**
@@ -34,7 +40,18 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Comment::create([
+            'user_id' => $request->get('user_id'),
+            'post_id' => $request->get('post_id'),
+            'content' => $request->get('content'),
+            'comment_id'=>$request->get('comment_id'),
+        ]);
+        return response()->json([
+            'message'=>'Comment placed',
+            'user_id'=>$request->get('user_id'),
+            'post_id'=>$request->get('post_id'),
+            'content'=>$request->get('content'),
+        ]);
     }
 
     /**

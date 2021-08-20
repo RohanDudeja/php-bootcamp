@@ -3,6 +3,7 @@
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
+use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,3 +30,4 @@ Route::get('/users_actions', function () {
 
 Route::resource('/user/{user_id}/posts', PostController::class);
 Route::resource('/post/{post_id}/comments', CommentController::class);
+Route::get('/post/{user_id}',[PostController::class,'getPostsByID']);
