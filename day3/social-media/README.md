@@ -11,7 +11,7 @@
 ### How to start the server
  - Clone the repo
  - Install php, apache.
- - redirect to repo head ```cd day2/user-store```
+ - redirect to repo head ```cd day3/user-store```
  - make changes in ```.env``` file
  - run the migrations ```php artisan migrate```
  - run following commands to start the server ```php artisan serve```
