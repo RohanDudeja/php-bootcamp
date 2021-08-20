@@ -6,6 +6,7 @@ use GrahamCampbell\ResultType\Result;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\User;
+use Illuminate\Support\Facades\Log;
 
 class PostController extends Controller
 {
@@ -22,11 +23,13 @@ class PostController extends Controller
             if (User::where('user_id', $user_id)->where('password',$password)->exists()){
 
             }else {
+                Log::info('User failed to login.'. $user_id);
                 return response()->json([
                     'message'=>'invalid password',
                 ]);
             }
         }else {
+            Log::info('Invalid user tried to login.'. $user_id);
             return response()->json([
                 'message'=>'no such user exists',
             ]);
@@ -62,6 +65,10 @@ class PostController extends Controller
             'post_id' => $request->get('post_id'),
             'content' => $request->get('post_content'),
         ]);
+        Log::info('Creating the post content for post '.
+            $request->get('post_id').
+            ' for user: '.
+            $request->get('user_id'));
         return response()->json([
             'message'=>'Post created',
             'user_id'=>$request->get('user_id'),
@@ -124,6 +131,10 @@ class PostController extends Controller
         if (Post::where('user_id', $request->get('user_id_get'))->exists()) {
             $posts = Post::where('user_id', $request->get('user_id_get'))->get();
         }
+        Log::info('Showing the post content for post '.
+            $request->get('post_id').
+            ' to user: '.
+            $request->get('user_id'));
         return view('viewpostby',['allPosts'=>$posts]);
     }
 }
