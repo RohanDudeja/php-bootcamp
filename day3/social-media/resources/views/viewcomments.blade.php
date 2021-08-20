@@ -13,7 +13,7 @@
             <thead>
             <td>#</td>
             <td>PostID</td>
-            <td>UserID</td>
+            <td>UserName</td>
             <td>Comments</td>
             </thead>
             <tbody>

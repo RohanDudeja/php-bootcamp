@@ -13,7 +13,7 @@
             <thead>
             <td>#</td>
             <td>Name</td>
-            <td>UserID</td>
+            <td>UserName</td>
             </thead>
             <tbody>
             @foreach ($allUsers as $user)

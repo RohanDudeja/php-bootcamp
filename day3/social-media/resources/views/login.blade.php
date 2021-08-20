@@ -12,7 +12,7 @@
             <form id="myForm" method="GET" action="{{route('posts.index',['user_id' => 'user_id'])}}">
             @csrf <!-- {{ csrf_field() }} -->
                 <div class="form-input">
-                    <label>UserID</label> <input type="text" name="user_id">
+                    <label>UserName</label> <input type="text" name="user_id">
                 </div>
                 <div class="form-input">
                     <label>Password</label> <input type="text" name="password">

@@ -131,10 +131,6 @@ class PostController extends Controller
         if (Post::where('user_id', $request->get('user_id_get'))->exists()) {
             $posts = Post::where('user_id', $request->get('user_id_get'))->get();
         }
-        Log::info('Showing the post content for post '.
-            $request->get('post_id').
-            ' to user: '.
-            $request->get('user_id'));
         return view('viewpostby',['allPosts'=>$posts]);
     }
 }

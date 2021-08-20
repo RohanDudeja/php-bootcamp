@@ -40,7 +40,7 @@
         <form method="GET" action="{{ config('app.url')}}/post/{user_id}">
         @csrf <!-- {{ csrf_field() }} -->
             <div class="form-input">
-                <label>UserID</label> <input type="text" name="user_id_get">
+                <label>UserName</label> <input type="text" name="user_id_get">
             </div>
             <button type="submit">Get Posts</button>
         </form>
