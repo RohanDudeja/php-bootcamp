@@ -8,9 +8,17 @@
 - Can comment on a post
 - Can view all comments on a post
 
+### Schemes:
+|Table Name | Description |
+| ------------- | ------------- |
+|users| Store all user data|
+|posts| Store all Posts by Users|
+|comments| Store all Comments on Posts|
+
 ### How to start the server
  - Clone the repo
  - Install php, apache.
+ - update composer
  - redirect to repo head ```cd day3/user-store```
  - make changes in ```.env``` file
  - run the migrations ```php artisan migrate```
