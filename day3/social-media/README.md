@@ -8,7 +8,7 @@
 - Can comment on a post
 - Can view all comments on a post
 
-###How to start the server
+### How to start the server
  - Clone the repo
  - Install php, apache.
  - redirect to repo head ```cd day2/user-store```
