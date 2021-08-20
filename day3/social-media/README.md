@@ -1,6 +1,6 @@
 <p align="center">Social Media Platform</p>
 
-## UI functionality 
+### UI functionality 
 - Can create a user
 - Can view list of all registered users
 - Can view all Posts
